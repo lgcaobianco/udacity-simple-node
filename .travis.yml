@@ -19,5 +19,5 @@ script:
 
 after_success:
   - echo "[info] build was success, image will be deployed to docker-hub"
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login --username lgcaobianco --password-stdin
   - docker push lgcaobianco/simple-node
