@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+ - 13
+
+services:
+  - docker
+
+install:
+  - echo "no installation required"
+
+before_script:
+  - echo "no tests were defined"
+
+script:
+  - echo "[info] docker version"
+  - docker --version 
+  - docker build -t simple-node .
+  - docker tag simple-node lgcaobianco/simple-node:latest
+
+after_success:
+  - echo "[info] build was success, image will be deployed to docker-hub"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push lgcaobianco/simple-node
